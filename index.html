@@ -7,8 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <!--Include jQuery-->
     <script src="jquery.js"></script>
 
@@ -23,7 +22,7 @@
         <br>
         <div class="d-flex justify-content-center">
             <input class="btn btn-outline-secondary" type="button" value="Show in JSON" id="btnJSON" />
-            <input class="btn btn-outline-secondary" type="button" value="Show in XML" id="btnXML" />    
+            <input class="btn btn-outline-secondary" type="button" value="Show in XML" id="btnXML" />
         </div>
         <br>
         <br>
@@ -45,16 +44,16 @@
 
 <script>
     //Akses XML
-    $(document).ready(function () {
-        $('#btnXML').click(function () {
+    $(document).ready(function() {
+        $('#btnXML').click(function() {
 
             $('#tableBody').empty();
             $.ajax({
                 type: 'GET',
                 url: 'http://localhost:8080/datamhs/xml',
                 dataType: 'xml',
-                success: function (xml) {
-                    $(xml).find('item').each(function () {
+                success: function(xml) {
+                    $(xml).find('item').each(function() {
                         $('#tableBody').append(
                             '<tr>' +
                             '<td>' +
@@ -67,7 +66,7 @@
                             $(this).find('fakultas').text() + '</td> ' +
                             '<td>' +
                             '</tr>');
-                            
+
                     });
                 }
             });
@@ -75,17 +74,19 @@
     });
 
     //json
-    $(document).ready(function () {
-        $('#btnJSON').click(function () {
+    $(document).ready(function() {
+        $('#btnJSON').click(function() {
 
             $('#tableBody').empty();
             $.ajax({
                 type: 'GET',
                 url: 'http://localhost:8080/datamhs/json',
-                data: { get_param: 'value' }, 
+                data: {
+                    get_param: 'value'
+                },
                 dataType: 'json',
-                success: function (data) {
-                    $.each(data, function (index, element) {
+                success: function(data) {
+                    $.each(data, function(index, element) {
                         $('#tableBody').append(
                             '<tr>' +
                             '<td>' +
@@ -103,30 +104,6 @@
             });
         });
     });
-//     //Akses JSON
-//   $(document).ready(function () {
-//         $('#btnJSON').click(function () {
-//             $.getJSON("http://localhost:8080/datamhs/json", function (data) {
-//                 var student = "";
-
-//                 $.each(data, function (key, value) {
-//                     student += "<tr>";
-//                     student += "<td>" + value.nim + "</td>";
-
-//                     student += "<td>" + value.nama + "</td>";
-
-//                     student += "<td>" + value.programstudi + "</td>";
-
-//                     student += "<td>" + value.fakultas + "</td>";
-
-//                     student += "</tr>";
-                    
-//                 });
-//                 $("#table").append(student);
-//                 return;
-//             });
-//         });
-//     });
 </script>
 
 </html>
